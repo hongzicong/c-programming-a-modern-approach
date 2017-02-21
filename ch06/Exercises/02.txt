@@ -7,4 +7,4 @@ do {
 } while (i > 0);
 
 This loop will print a line of values that are each one tenth of the previous value until the value is less than 0:
-9384 938 94 9 
+9384 938 93 9 
