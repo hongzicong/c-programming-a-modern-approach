@@ -1,23 +1,18 @@
 #include <stdio.h>
 
-int compute_polynomial(int x);
+int computeX(int x);
 
-int main(void)
-{
-    int x;
-    printf("Enter a value for x: ");
-    scanf("%d", &x);
-    printf("%d", compute_polynomial(x));
+int main(void){
+	
+	int x;
+	
+	printf("Enter the x: ");
+	scanf("%d",&x);
+	printf("The result is %d.",computeX(x));
+	
+	return 0;
+} 
 
-    return 0;
-}
-
-int compute_polynomial(int x)
-{
-    return (  (3 * (x * x * x * x * x))
-            + (2 * (x * x * x * x))
-            - (5 * (x * x * x))
-            - (x * x)
-            + (7 * x)
-            - 6);
+int computeX(int x){
+	return x*x*x*x*x*3+2*x*x*x*x-5*x*x*x-x*x+7*x-6;
 }
