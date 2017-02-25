@@ -1,25 +1,33 @@
 #include <stdio.h>
 
-int gcd(int, int);
+int gcd(int a,int b);
 
-int main(void)
-{
-    printf("GCD of %d and %d: %d", 12, 28, gcd(12, 28));
-    return 0;
+int main(void){
+	
+	int a,b;
+	
+	printf("Enter two integers: ");
+	scanf("%d %d",&a,&b);
+	printf("Greatest common divisor: %d",gcd(a,b));
+	return 0;
+	
 }
 
-/* Returns the greatest common divisor of the
- * two values m and n.
- */
-int gcd(int m, int n)
-{
-    int remainder;
-    
-    while (n > 0) {
-        remainder = m % n;
-        m = n;
-        n = remainder;
-    }
-
-    return m;
+int gcd(int a,int b){
+	int temp,result;
+	
+	if(b>a){
+		temp=a;
+		a=b;
+		b=temp;
+	}
+	
+	while(b!=0){
+		temp=a;
+		a=b;
+		b=temp%b;
+	}
+	
+	return a;
+	
 }
