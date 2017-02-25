@@ -1,34 +1,34 @@
 #include <stdio.h>
-#include <ctype.h>
 #include <stdbool.h>
 
-int main(void)
-{
-    int i, letter_count[26] = {0};
-    char ch;
-    bool is_anagram = true;
-
-    printf("Enter first word: ");
-    for (i = 0; (ch = getchar()) != '\n' && i < 30; i++)
-        letter_count[toupper(ch) - 'A']++;
-
-    printf("Enter second word: ");
-    for (i = 0; (ch = getchar()) != '\n' && i < 30; i++)
-        letter_count[toupper(ch) - 'A']--;
-
-
-    for (i = 0; i < 26; i++) {
-        if (letter_count[i] != 0) {
-            is_anagram = false;
-            break;
-        }  
-    }
-
-    printf("The words are ");
-    if (is_anagram)
-        printf("anagrams.");
-    else
-        printf("not anagrams.");
-
-    return 0;
+int main(void){
+	
+	int i,n;
+	char c,c1[26]={0},c2[26]={0};//simply
+	bool isAnagram=true;
+	
+	printf("Enter first word: ");
+	c=getchar();
+	while(c!='\n'){
+		c1[c-'a']++;
+		c=getchar();
+	}
+	
+	printf("Enter second word: ");
+	c=getchar();
+	while(c!='\n'){
+		c2[c-'a']++;
+		c=getchar();
+	}
+	
+	for(i=0;i<26;i++){
+		if(c1[i]!=c2[i]){
+			isAnagram=false;
+			break;//simply
+		}
+	}
+	
+	printf(isAnagram?"The words are anagrams.":"The words are not anagrams.");
+	
+	return 0;
 }
