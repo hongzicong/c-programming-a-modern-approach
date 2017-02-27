@@ -18,18 +18,23 @@ int main(void)
 }
 
 /* finds the two largest values in an array */
-void find_two_largest(int a[], int n, int *largest, int *second_largest)
-{
-    int i;
-    for (i = 0; i < n; i++) {
-        if (a[i] > *largest) {
-            *second_largest = *largest;
-            *largest = a[i];
-        } else if (a[i] <= *largest && a[i] > *second_largest) {
-            *second_largest = a[i];
-        }
-        printf("Iteration %d: Largest: %d, Second Largest: %d\n",
-                i, *largest, *second_largest);
-    } 
+void find_two_largest(int a[],int n,int *largest,int *second_largest){
+	
+	int m;//max
+	*largest=a[0];
+	*second_largest=a[0];
+	
+	for(int i=1;i<n;i++){
+		if(a[i]>*largest){
+			*largest=a[i];
+			m=i;
+		}
+	}
+	
+	for(int i=1;i<n;i++){
+		if(i!=m&&a[i]>*second_largest){
+			*second_largest=a[i];
+		}
+	}
 }
 
