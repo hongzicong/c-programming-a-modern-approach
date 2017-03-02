@@ -5,7 +5,7 @@ incorrect. Identify which calls don't work and explain why.
 (b) printf("%c", "\n");         (h) putchar("\n");
 (c) printf("%s", '\n');         (i) puts('\n');
 (d) printf("%s", "\n");         (j) puts("\n");
-(e) printf('\n');               (k) puts(" ");
+(e) printf('\n');               (k) puts("");
 (f) printf("\n");
 
 Incorrect calls:
@@ -17,4 +17,3 @@ Incorrect calls:
 (h) putchar expects type char, received type char *.
 (i) puts expects type const char *, received type char.
 (j) puts already prints a newline at the end so this statment prints two newline chars.
-(k) prints a space and a new line character rather than just a newline char.
