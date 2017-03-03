@@ -19,3 +19,15 @@ void censor(char *str)
         if (*p == 'f' && *(p+1) == 'o' && *(p+2) == 'o')
             *p = *(p+1) = *(p+2) = 'x';
 }
+
+//my_editor
+
+void censor(char *p){
+	
+	while(p[0]!='\0'&&p[1]!='\0'&&p[2]!='\0'){
+		if(p[0]=='f'&&p[1]=='o'&&p[2]=='o'){
+			p[0]=p[1]=p[2]='x';
+		}
+		p++;
+	}
+}
