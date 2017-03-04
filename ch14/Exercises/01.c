@@ -2,7 +2,7 @@
 
 #define CUBE(x) ((x) * (x) * (x))
 #define REM(n) ((n) % 4)
-#define PROD(x, y) ((x) + (y) < 100 ? 1 : 0)
+#define PROD(x, y) ((x) * (y) < 100 ? 1 : 0)
 
 int main(void)
 {
