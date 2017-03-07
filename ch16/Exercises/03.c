@@ -1,31 +1,23 @@
-#include <stdio.h>
 
-struct complex {
-    double real;
-    double imaginary;
+struct complex{
+	double real;
+	double imaginary;
 };
 
-struct complex make_complex(double real, double imaginary)
-{
-    struct complex newcomplex;
-    newcomplex.real = real;
-    newcomplex.imaginary = imaginary;
+struct complex make_complex(double a,double b);
+struct complex add_complex(struct complex a,struct complex b);
 
-    return newcomplex;
+int main(void){
+	struct complex c1,c2,c3;
+	
+	return 0;
+} 
+
+struct complex make_complex(double a,double b){
+	return (struct complex){a,b};
 }
 
-struct complex add_complex(struct complex s1, struct complex s2)
-{
-    struct complex newcomplex;
-    newcomplex.real = s1.real + s2.real;
-    newcomplex.imaginary = s1.imaginary + s2.imaginary;
-
-    return newcomplex;
+struct complex add_complex(struct complex a,struct complex b){
+	return (struct complex){a.real+b.real,a.imaginary+b.imaginary};
 }
-
-int main(void)
-{
-    struct complex c1, c2, c3;
-}
-
 
