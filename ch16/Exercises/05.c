@@ -37,30 +37,25 @@ int day_of_year(struct date d)
 
 /* Returns -1 if d1 is earlier than d2, 1 if d1 is later than d2,
    or 0 if the same */
-int compare_dates(struct date d1, struct date d2)
-{
+
+int compare_dates(struct date d1,struct date d2){
+    
     int comparison;
-
-    /* Compare Years */
-    if (d1.year < d2.year)
-        comparison = EARLIER;
-    else if (d1.year < d2.year)
-        comparison = LATER;
-
-    /*Years are the same so compare num days in year */
-    else {
-        int d1_days = day_of_year(d1);
-        int d2_days = day_of_year(d2);
-
-        if (d1_days > d2_days)
-            comparison = EARLIER;
-        else if (d1_days < d2_days)
-            comparison = LATER;
-        else
-            comparison = SAME;
-
-    }
-
+    
+	if(d1.year!=d2.year){
+		comparison=(d1.year<d2.year)?EARLIER:LATER;
+	}else{
+		if(d1.month!=d2.month){
+			comparison=(d1.month<d2.month)?EARLIER:LATER;
+		}
+		else{
+			if(d1.day!=d2.day){
+				comparison=(d1.day<d2.day)?EARLIER:LATER;
+			}
+			comparison=SAME;
+		}
+	}   
+    
     return comparison;
 }
 
