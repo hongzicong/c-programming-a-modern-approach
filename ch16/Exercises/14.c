@@ -1,79 +1,69 @@
 #include <stdio.h>
 
+#define RECTANGLE 0
+#define CIRCLE 1
 #define PI 3.14159
-#define CIRCLE 0
-#define RECTANGLE 1
 
-struct point { int x, y; };
 
-struct shape {
-    int shape_kind;
-    struct point center;
-    union {
-        struct {
-            int height, width;
-        } rectangle;
-        struct {
-            int radius;
-        } circle;
-    } u;
-} s;
+struct point{
+	int x,y;
+};
+
+struct shape{
+	int shape_kind;
+	struct point center;
+	union{
+		struct{
+			double height,width;
+		}rectangle;
+		struct{
+			double radius;
+		}circle;
+	}u;
+}s;
 
 double compute_area(struct shape s);
-struct shape shift_shape(struct shape s, int x, int y);
-struct shape scale_shape(struct shape s, double scalefactor);
+struct shape move(struct shape s,int x,int y);
+struct shape small_big(struct shape s,double c);
 
-int main(void)
-{
-    s.shape_kind = CIRCLE;
-    s.u.circle.radius = 5;
-    printf("Area of circle with radius %d: %.2f\n", s.u.circle.radius,
-            compute_area(s));
-
-    s.shape_kind = RECTANGLE;
-    s.center.x = 12;
-    s.center.y = 20;
-    s.u.rectangle.height = 5;
-    s.u.rectangle.width = 10;
-    printf("Center of rectangle: %d,%d\n", s.center.x, s.center.y);
-    printf("Area of rectangle with height %d and width %d: %.0f\n", 
-            s.u.rectangle.height, s.u.rectangle.width, compute_area(s));
-
-    s = shift_shape(s, 5, 10);
-    printf("Center of shifted rectangle: %d,%d\n", s.center.x,
-            s.center.y);
-
-    s.shape_kind = CIRCLE;
-    s.u.circle.radius = 5;
-    s = scale_shape(s, 1.5);
-    printf("Circle new radius after scaled by 1.5: %d\n", s.u.circle.radius);
-    return 0;
+int main(void){
+	
+	struct shape s={RECTANGLE,{1,1},5,5};
+	s=move(s,1,1);
+	s=small_big(s,0.5);
+	
+	printf("%g\n",compute_area(s));
+	printf("%d %d",s.center.x,s.center.y);
+	
+	return 0;
 }
 
-double compute_area(struct shape s)
-{
-    if (s.shape_kind == CIRCLE) {
-        return PI * s.u.circle.radius * s.u.circle.radius;
-    }
-    else  if (s.shape_kind == RECTANGLE)
-        return s.u.rectangle.height * s.u.rectangle.width;
+double compute_area(struct shape s){
+	if(s.shape_kind==RECTANGLE){
+		return s.u.rectangle.height*s.u.rectangle.width/2.0;
+	}else if(s.shape_kind==CIRCLE){
+		return s.u.circle.radius*s.u.circle.radius*PI;
+	}else{
+		printf("shape_kind go wrong!");
+		return 0;
+	}
 }
 
-struct shape shift_shape(struct shape s, int x, int y)
-{
-    s.center.x += x;
-    s.center.y += y;
-    return s;
+struct shape move(struct shape s,int x,int y){
+	s.center.x+=x;
+	s.center.y+=y;
+	return s;
 }
 
-struct shape scale_shape(struct shape s, double scalefactor)
-{
-    if (s.shape_kind == CIRCLE) {
-        s.u.circle.radius *= scalefactor;
-    }
-    else if (s.shape_kind == RECTANGLE) {
-        s.u.rectangle.height *= scalefactor;
-        s.u.rectangle.width *= scalefactor;
-    }
-    return s;
+struct shape small_big(struct shape s,double c){
+	if(s.shape_kind==RECTANGLE){
+		s.u.rectangle.height*=c;
+		s.u.rectangle.width*=c;
+	}else if(s.shape_kind==CIRCLE){
+		s.u.circle.radius*=c;
+	}else{
+		printf("shape_kind go wrong!");
+		return s;
+	}
+	return s;
 }
