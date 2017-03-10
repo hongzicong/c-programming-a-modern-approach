@@ -19,6 +19,13 @@ int sum(int (*f)(int), int start, int end)
     while (start <= end) {
         sum += (*f)(start);
         start++;
+        /*
+         *可以写成sum+=(*f)(start++);
+         *因为虽然start++产生的副作用会
+         *导致start在内存中值加1，但是
+         *start++返回的是一个右值，是start
+         *的值来的
+         */
     }
     return sum;
 }
