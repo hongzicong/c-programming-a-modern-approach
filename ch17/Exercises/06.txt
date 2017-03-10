@@ -3,7 +3,7 @@ instead of two.
 
 void *delete_from_list(struct node **pp, int n)
 {
-    struct node entry = *pp;
+    struct node *entry = *pp;
 
     while (entry) {
         if (entry->value == n) {
