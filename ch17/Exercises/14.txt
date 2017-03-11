@@ -1,18 +1,16 @@
-Modify the delete_from_list function (Section 17.5) so that its first
-parameter has tupe struct node ** (a pointer to a pointer to the first node in
-a list) and its return type is void. delete_from list must modify its
-first argument to point to the list after the desired node has been deleted.
 
-void delte_from_list(struct node **pp, int n)
-{
-    struct node *entry = *pp;
 
-    while (entry) {
-        if (entry->value == n) {
-            *pp = entry->next;
-            free(entry);
-        }
-        pp = &entry->next;
-        entry = entry->next;
-    }
+void delete_one_from_list(struct node **source,int n){
+	struct node *p = *source;
+	while(p != NULL){
+		if(p->value == n){
+			*source = p->next;
+			free(p);
+			p=*source;
+		}
+		else{
+			source = &(p->next);
+			p=p->next;
+		}
+	}
 }
