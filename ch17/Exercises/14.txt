@@ -3,7 +3,7 @@ parameter has tupe struct node ** (a pointer to a pointer to the first node in
 a list) and its return type is void. delete_from list must modify its
 first argument to point to the list after the desired node has been deleted.
 
-void *delte_from_list(struct node **pp, int n)
+void delte_from_list(struct node **pp, int n)
 {
     struct node *entry = *pp;
 
